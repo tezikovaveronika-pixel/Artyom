@@ -3,137 +3,166 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Дневник занятий</title>
+<title>Занятия английским</title>
 <style>
 :root{
-  --coral:#FF6150; --yellow:#FBBF3B; --teal:#2E9C8F; --blue:#1384E0;
-  --navy:#1B1B2F; --paper:#fff; --muted:#5d5d6e; --line:#ececf1;
-  --serif:Georgia,"Times New Roman",serif;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --blue:#3B8FFF; --blue-d:#1f6fe0; --lime:#C4F233; --ink:#1c1c1e; --grey:#f3f3f5;
+  --muted:#6b6b76; --line:#e6e6ec; --coral:#FF6B5B; --yellow:#FFC83D;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:var(--sans);color:var(--navy);background:var(--paper);line-height:1.5}
-h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0}
+body{margin:0;background:var(--blue);padding:16px;font-family:var(--sans);color:var(--ink);line-height:1.5}
+h1,h2,h3{margin:0;line-height:1.1;font-weight:800;letter-spacing:-.02em}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.frame{max-width:1120px;margin:0 auto;background:#fff;border-radius:28px;padding:16px;overflow:hidden}
 
-/* Верхний блок */
-.top{background:var(--coral);padding:14px}
-.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}
-.pill{background:#fff;border-radius:12px;padding:8px 16px;font-weight:700;font-size:14px}
-.hero{display:grid;gap:14px;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto}
-.card{background:#fff;border-radius:22px;padding:28px}
-.hero .card h1{font-size:clamp(28px,5vw,44px)}
-.hero .card p{color:var(--muted);margin:12px 0 0}
-.facts{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
-.facts b{display:inline-block;min-width:96px;color:var(--muted);font-weight:500}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;text-decoration:none;
-  padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px}
-.btn.alt{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
-.btn:hover{transform:translateY(-1px)}
-.art{position:relative;overflow:hidden;min-height:300px;background:var(--yellow)}
-.art i{position:absolute;display:block}
-.c1{width:150px;height:150px;border-radius:50%;background:var(--coral);left:-30px;top:-30px}
-.c2{width:190px;height:190px;background:var(--teal);right:30px;top:40px;transform:rotate(45deg);border-radius:18px}
-.c3{width:130px;height:130px;border-radius:50%;background:var(--blue);left:60px;bottom:-20px}
-.c4{width:110px;height:110px;background:#fff;right:-10px;bottom:20px;
-  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.squig{position:absolute;left:0;bottom:6px;width:100%;height:80px;pointer-events:none}
+/* навигация */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--grey);border-radius:20px;padding:8px 10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.logo{width:40px;height:34px;border-radius:12px;background:var(--lime);display:grid;place-items:center;flex:none}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 22px;font-weight:600;font-size:14px;text-decoration:none;border:0;background:var(--blue);color:#fff}
+.pill:hover{background:var(--blue-d)}
 
-/* Месяцы */
-main{max-width:1100px;margin:0 auto;padding:44px 14px 60px}
-.head{text-align:center;margin-bottom:26px}
-.head h2{font-size:clamp(26px,4vw,38px)}
-.head p{color:var(--muted);margin:8px 0 0}
-details.month{border:2px solid var(--line);border-radius:20px;margin-bottom:12px;background:#fff;overflow:hidden}
-details.month[open]{border-color:var(--navy)}
-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px}
+/* первый экран */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:center;padding:36px 20px 28px}
+.hero h1{font-size:clamp(36px,6.4vw,64px)}
+.goal{margin:18px 0 0;max-width:430px;color:var(--muted);font-size:17px}
+.goal b{color:var(--ink)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--grey);border-radius:999px;padding:6px 6px 6px 22px;text-decoration:none;font-weight:600;font-size:15px}
+.btn .go{width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:18px}
+.btn.alt .go{background:var(--ink)}
+.btn:hover{background:#e9e9ee}
+.vis{position:relative;min-height:340px}
+.vis .lime{position:absolute;right:-50px;top:10px;width:86%;height:86%;background:var(--lime);border-radius:62% 38% 55% 45%;transform:rotate(-16deg)}
+.vis .tile{position:absolute;right:26px;top:8px;width:60%;aspect-ratio:1;border-radius:28px;transform:rotate(6deg);
+  background:linear-gradient(140deg,#5aa4ff,var(--blue-d));display:grid;place-content:center;text-align:center;color:#fff;
+  font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1}
+.tile small{display:block;margin-top:10px;font-size:.62em;color:var(--lime);letter-spacing:.04em}
+.note{position:absolute;left:0;bottom:34px;background:var(--grey);border-radius:18px;padding:14px 18px;transform:rotate(-4deg);
+  font-weight:600;font-size:14px;max-width:200px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.blob{position:absolute;right:6px;bottom:0;width:104px}
+
+/* синий блок */
+.about{background:var(--blue);border-radius:28px;padding:30px 24px 34px;margin-top:6px}
+.about h2{color:#fff;font-size:clamp(26px,4vw,38px);margin-bottom:22px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
+.fact{background:#fff;border-radius:22px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.fact:nth-child(1){transform:rotate(-2deg)}
+.fact:nth-child(2){transform:translateY(18px) rotate(1.5deg)}
+.fact:nth-child(3){transform:rotate(-1deg)}
+.fact:nth-child(4){transform:translateY(18px) rotate(2deg)}
+.fact span{color:var(--muted);font-size:14px}
+.fact b{font-size:19px;line-height:1.2}
+.shape{width:34px;height:34px;margin-bottom:12px}
+
+/* месяцы */
+.months{padding:44px 6px 8px}
+.mhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.mhead h2{font-size:clamp(28px,4.4vw,42px)}
+.mhead p{margin:0;color:var(--muted);font-size:14px}
+details.month{background:var(--grey);border-radius:22px;margin-bottom:12px;overflow:hidden;border:2px solid transparent}
+details.month[open]{background:#fff;border-color:var(--ink)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 20px}
 summary::-webkit-details-marker{display:none}
-.dot{width:28px;height:28px;flex:none;border-radius:50%}
+.dot{width:26px;height:26px;flex:none}
 summary h3{font-size:22px;flex:1}
-.count{font-size:14px;color:var(--muted)}
-.chev{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;transition:transform .2s}
+.count{background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
+details[open] .count{background:var(--grey)}
+.chev{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;transition:transform .2s}
 details[open] .chev{transform:rotate(180deg)}
-.wrap{padding:0 22px 22px;overflow-x:auto}
+.wrap{padding:0 20px 20px;overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:15px}
-th{font-family:var(--serif);text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid var(--navy);white-space:nowrap}
+th{text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid var(--ink);white-space:nowrap}
 td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 td.date{white-space:nowrap;font-weight:700}
 .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
-.badge.yes{background:#d9f2ee;color:#17665c}
+.badge.yes{background:var(--lime);color:#243300}
 .badge.no{background:#ffe1dd;color:#b3321f}
 .files{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.files img{width:96px;height:96px;object-fit:cover;border-radius:12px;border:2px solid var(--line);display:block}
-.file{display:inline-block;padding:6px 12px;border-radius:10px;background:#eef6ff;color:#0b5aa6;text-decoration:none;font-size:14px;font-weight:600}
+.files img{width:96px;height:96px;object-fit:cover;border-radius:14px;border:2px solid var(--line);display:block}
+.file{display:inline-block;padding:6px 12px;border-radius:999px;background:#e8f1ff;color:#0b5aa6;text-decoration:none;font-size:14px;font-weight:600}
 .empty{color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:26px 0 10px}
 
-footer{text-align:center;color:var(--muted);font-size:14px;padding:0 14px 40px}
-
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;padding:26px 8px 18px}
+  .vis{min-height:300px}
+  .cards{grid-template-columns:1fr 1fr}
+  .fact:nth-child(n){transform:none}
+  .about{padding:24px 16px}
+  .nav .who{display:none}
+}
 @media (max-width:760px){
-  .hero{grid-template-columns:1fr}
-  .art{min-height:200px}
-  .card{padding:22px}
-  summary{padding:16px}
+  summary{padding:14px}
   .wrap{padding:0 12px 14px}
   table,thead,tbody,tr,td{display:block}
   thead{display:none}
-  tr{border:2px solid var(--line);border-radius:14px;padding:6px 12px;margin-bottom:10px}
+  tr{background:var(--grey);border-radius:16px;padding:6px 14px;margin-bottom:10px}
   td{border:0;padding:8px 0}
-  td::before{content:attr(data-l);display:block;font-family:var(--serif);font-weight:700;font-size:13px;color:var(--muted)}
+  td::before{content:attr(data-l);display:block;font-weight:700;font-size:13px;color:var(--muted)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<div class="frame">
 
-<header class="top">
-  <div class="bar">
-    <span class="pill" id="schoolName"></span>
-    <span class="pill" id="teacherPill"></span>
-  </div>
-  <div class="hero">
-    <section class="card">
+  <nav class="nav">
+    <div class="brand">
+      <span class="logo"><svg width="22" height="16" viewBox="0 0 22 16"><circle cx="6" cy="5" r="2" fill="#1c1c1e"/><circle cx="16" cy="5" r="2" fill="#1c1c1e"/><path d="M4 10c3 4 11 4 14 0" fill="none" stroke="#1c1c1e" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span id="tagline"></span>
+    </div>
+    <a class="pill" id="navConf" target="_blank" rel="noopener">Подключиться к занятию</a>
+  </nav>
+
+  <section class="hero">
+    <div>
       <h1 id="studentName"></h1>
-      <p id="about"></p>
-      <ul class="facts" id="facts"></ul>
+      <p class="goal"><b>Цель занятий:</b> <span id="goal"></span></p>
       <div class="btns">
-        <a class="btn" id="linkConf" target="_blank" rel="noopener">Войти на занятие</a>
-        <a class="btn alt" id="linkMiro" target="_blank" rel="noopener">Доска Miro</a>
+        <a class="btn" id="linkConf" target="_blank" rel="noopener">Подключиться к занятию <span class="go">↗</span></a>
+        <a class="btn alt" id="linkMiro" target="_blank" rel="noopener">Доска Miro <span class="go">↗</span></a>
       </div>
-    </section>
-    <section class="card art" aria-hidden="true">
-      <i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i>
-      <svg class="squig" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 50 C30 0 50 80 80 40 S130 10 150 45 S210 80 240 35 S300 5 330 45 S380 70 400 30" fill="none" stroke="#FF6150" stroke-width="6" stroke-linecap="round"/></svg>
-    </section>
-  </div>
-</header>
+    </div>
+    <div class="vis" aria-hidden="true">
+      <div class="lime"></div>
+      <div class="tile"><div>Hello!<small>ABC</small></div></div>
+      <div class="note" id="note"></div>
+      <svg class="blob" viewBox="0 0 100 90"><path d="M10 60C4 30 30 6 55 8s42 22 36 48c-4 20-24 30-44 28S14 80 10 60z" fill="#3B8FFF" stroke="#fff" stroke-width="4"/><circle cx="40" cy="42" r="7" fill="#fff"/><circle cx="64" cy="42" r="7" fill="#fff"/><circle cx="42" cy="43" r="3.5" fill="#1c1c1e"/><circle cx="66" cy="43" r="3.5" fill="#1c1c1e"/><path d="M44 60c5 5 12 5 17 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+    </div>
+  </section>
 
-<main>
-  <div class="head">
-    <h2>Что проходим</h2>
-    <p>Нажмите на месяц, чтобы увидеть все занятия</p>
-  </div>
-  <div id="months"></div>
-</main>
-<footer id="foot"></footer>
+  <section class="about">
+    <h2>Об обучении</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section class="months">
+    <div class="mhead">
+      <h2>Что проходим</h2>
+      <p>Нажмите на месяц, чтобы увидеть все занятия</p>
+    </div>
+    <div id="months"></div>
+  </section>
+
+</div>
 
 <script>
 /* ============================================================
    ВСЁ, ЧТО НУЖНО МЕНЯТЬ, НАХОДИТСЯ В ЭТОМ БЛОКЕ
    ============================================================ */
 const SITE = {
-  school: "Название школы или ваше имя",
-  teacher: "Преподаватель: Имя Отчество",
-  student: "Имя Фамилия ученика",
-  about: "Коротко об ученике: возраст, цель занятий, особенности.",
-  facts: [                       // можно добавлять и удалять строки
-    ["Возраст", "8 лет"],
-    ["Предмет", "Математика"],
-    ["Расписание", "вт и чт, 17:00"]
-  ],
-  conferenceUrl: "https://example.com/conference",   // ссылка на конференцию
-  miroUrl: "https://miro.com/app/board/ВАША_ДОСКА/"  // ссылка на доску Miro
+  tagline: "English сам себя не выучит",
+  teacher: "Вероника Константиновна",
+  student: "Артем Астафьев",
+  goal: "обучение чтению и освоение основ английского языка.",
+  grade: "2а",
+  subject: "Английский язык",
+  schedule: "Пн и Пт, 11:00",
+  conferenceUrl: "https://telemost.yandex.ru/j/41613696564383",
+  miroUrl: "https://miro.com/welcomeonboard/d3cwQkhRdGJPcDdUMjhLam9kSHFKK25nSHhQOFRCeVpKc01aVnpUMzFqUStnRDBBaU1FTG1xVEJRRXJFZytuUnU0WStTTjhTRy9vSUdHckVCWmJZVWF1UzZ4M0xKYTM0Z0VyemJvYmhTYjdaQWJJQzcydUZld1IrRjdjVkpYZ3FBS2NFMDFkcUNFSnM0d3FEN050ekl3PT0hdjE=?share_link_id=958354347543"
 };
 
 /* Занятия. Месяцы создаются сами по дате: появилась дата декабря —
@@ -142,32 +171,34 @@ const SITE = {
    Файлы и фото к домашнему заданию: положите их в папку files рядом с
    index.html и впишите имя файла в files: ["фото1.jpg", "задание.pdf"] */
 const LESSONS = [
-  { date:"2026-11-03", topic:"Сложение и вычитание до 20",
-    homework:{ text:"Карточки 1–5, стр. 12", files:[] }, paid:true },
-  { date:"2026-11-05", topic:"Состав числа",
-    homework:{ text:"Решить пример на фото", files:["primer.jpg"] }, paid:true },
-  { date:"2026-11-10", topic:"Задачи на «больше» и «меньше»",
-    homework:{ text:"", files:[] }, paid:false },
-    { date:"2026-11-21", topic:"Подготовка к Олимпиаде", 
-    homework:{ text:"Аудирование из Олимпиады", files:[] }, paid:true },
-
+  { date:"2026-11-21", topic:"Подготовка к Олимпиаде",
+    homework:{ text:"Аудирование из Олимпиады", files:[] }, paid:true }
 ];
 /* ============================================================ */
 
 const MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
-const COLORS = ["#FF6150","#FBBF3B","#2E9C8F","#1384E0"];
+const COLORS = ["#3B8FFF","#C4F233","#FF6B5B","#FFC83D"];
 const IMG = /\.(jpe?g|png|gif|webp|heic)$/i;
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt = d => { const [y,m,day] = d.split("-"); return `${day}.${m}.${y}`; };
+const $ = id => document.getElementById(id);
 
-document.title = SITE.student + " — занятия";
-document.getElementById("schoolName").textContent = SITE.school;
-document.getElementById("teacherPill").textContent = SITE.teacher;
-document.getElementById("studentName").textContent = SITE.student;
-document.getElementById("about").textContent = SITE.about;
-document.getElementById("facts").innerHTML = SITE.facts.map(([k,v]) => `<li><b>${esc(k)}</b>${esc(v)}</li>`).join("");
-document.getElementById("linkConf").href = SITE.conferenceUrl;
-document.getElementById("linkMiro").href = SITE.miroUrl;
+document.title = SITE.student + " — занятия английским";
+$("tagline").textContent = SITE.tagline;
+$("studentName").textContent = SITE.student;
+$("goal").textContent = SITE.goal;
+$("note").textContent = "Занятия: " + SITE.schedule;
+$("navConf").href = $("linkConf").href = SITE.conferenceUrl;
+$("linkMiro").href = SITE.miroUrl;
+
+const shapes = [
+  `<svg class="shape" viewBox="0 0 34 34"><circle cx="9" cy="9" r="8" fill="#FF6B5B"/><circle cx="25" cy="9" r="8" fill="#FF6B5B"/><circle cx="9" cy="25" r="8" fill="#FF6B5B"/><circle cx="25" cy="25" r="8" fill="#FF6B5B"/></svg>`,
+  `<svg class="shape" viewBox="0 0 34 34"><rect x="6" y="6" width="22" height="22" rx="3" fill="#2E9C8F" transform="rotate(45 17 17)"/></svg>`,
+  `<svg class="shape" viewBox="0 0 34 34"><path d="M17 2l4.5 10 10.5 1-8 7 2.5 11L17 25l-9.5 6L10 20 2 13l10.5-1z" fill="#FFC83D"/></svg>`,
+  `<svg class="shape" viewBox="0 0 34 34"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" fill="#3B8FFF"/></svg>`
+];
+const facts = [["Класс", SITE.grade], ["Предмет", SITE.subject], ["Расписание", SITE.schedule], ["Преподаватель", SITE.teacher]];
+$("cards").innerHTML = facts.map(([k,v],i) => `<div class="fact">${shapes[i]}<div><span>${esc(k)}</span><br><b>${esc(v)}</b></div></div>`).join("");
 
 function filesHtml(files){
   if(!files || !files.length) return "";
@@ -179,15 +210,12 @@ function filesHtml(files){
   }).join("") + `</div>`;
 }
 
-// группировка по месяцам: новые месяцы сверху, занятия внутри месяца по порядку
 const groups = {};
 LESSONS.forEach(l => (groups[l.date.slice(0,7)] ||= []).push(l));
 const keys = Object.keys(groups).sort().reverse();
+const box = $("months");
+if(!keys.length) box.innerHTML = `<p class="empty">Занятий пока нет.</p>`;
 
-const box = document.getElementById("months");
-if(!keys.length){
-  box.innerHTML = `<p class="empty" style="text-align:center">Занятий пока нет.</p>`;
-}
 keys.forEach((k, i) => {
   const [y, m] = k.split("-");
   const rows = groups[k].sort((a,b) => a.date.localeCompare(b.date)).map(l => {
@@ -204,9 +232,9 @@ keys.forEach((k, i) => {
   const word = n%10===1&&n%100!==11 ? "занятие" : (n%10>=2&&n%10<=4&&(n%100<10||n%100>=20) ? "занятия" : "занятий");
   const d = document.createElement("details");
   d.className = "month";
-  if(i === 0) d.open = true;   // самый новый месяц открыт сразу
+  if(i === 0) d.open = true;
   d.innerHTML = `<summary>
-      <span class="dot" style="background:${COLORS[(keys.length-1-i)%COLORS.length]}"></span>
+      <svg class="dot" viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="${COLORS[(keys.length-1-i)%COLORS.length]}"/></svg>
       <h3>${MONTHS[+m-1]} ${y}</h3>
       <span class="count">${n} ${word}</span>
       <span class="chev" aria-hidden="true">▾</span>
@@ -217,8 +245,6 @@ keys.forEach((k, i) => {
     </table></div>`;
   box.appendChild(d);
 });
-
-document.getElementById("foot").textContent = SITE.school;
 </script>
 </body>
 </html>
