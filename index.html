@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дневник занятий</title>
+<style>
+:root{
+  --coral:#FF6150; --yellow:#FBBF3B; --teal:#2E9C8F; --blue:#1384E0;
+  --navy:#1B1B2F; --paper:#fff; --muted:#5d5d6e; --line:#ececf1;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--navy);background:var(--paper);line-height:1.5}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* Верхний блок */
+.top{background:var(--coral);padding:14px}
+.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}
+.pill{background:#fff;border-radius:12px;padding:8px 16px;font-weight:700;font-size:14px}
+.hero{display:grid;gap:14px;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto}
+.card{background:#fff;border-radius:22px;padding:28px}
+.hero .card h1{font-size:clamp(28px,5vw,44px)}
+.hero .card p{color:var(--muted);margin:12px 0 0}
+.facts{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.facts b{display:inline-block;min-width:96px;color:var(--muted);font-weight:500}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;text-decoration:none;
+  padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px}
+.btn.alt{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
+.btn:hover{transform:translateY(-1px)}
+.art{position:relative;overflow:hidden;min-height:300px;background:var(--yellow)}
+.art i{position:absolute;display:block}
+.c1{width:150px;height:150px;border-radius:50%;background:var(--coral);left:-30px;top:-30px}
+.c2{width:190px;height:190px;background:var(--teal);right:30px;top:40px;transform:rotate(45deg);border-radius:18px}
+.c3{width:130px;height:130px;border-radius:50%;background:var(--blue);left:60px;bottom:-20px}
+.c4{width:110px;height:110px;background:#fff;right:-10px;bottom:20px;
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.squig{position:absolute;left:0;bottom:6px;width:100%;height:80px;pointer-events:none}
+
+/* Месяцы */
+main{max-width:1100px;margin:0 auto;padding:44px 14px 60px}
+.head{text-align:center;margin-bottom:26px}
+.head h2{font-size:clamp(26px,4vw,38px)}
+.head p{color:var(--muted);margin:8px 0 0}
+details.month{border:2px solid var(--line);border-radius:20px;margin-bottom:12px;background:#fff;overflow:hidden}
+details.month[open]{border-color:var(--navy)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px}
+summary::-webkit-details-marker{display:none}
+.dot{width:28px;height:28px;flex:none;border-radius:50%}
+summary h3{font-size:22px;flex:1}
+.count{font-size:14px;color:var(--muted)}
+.chev{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;transition:transform .2s}
+details[open] .chev{transform:rotate(180deg)}
+.wrap{padding:0 22px 22px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font-family:var(--serif);text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid var(--navy);white-space:nowrap}
+td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+td.date{white-space:nowrap;font-weight:700}
+.badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.badge.yes{background:#d9f2ee;color:#17665c}
+.badge.no{background:#ffe1dd;color:#b3321f}
+.files{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.files img{width:96px;height:96px;object-fit:cover;border-radius:12px;border:2px solid var(--line);display:block}
+.file{display:inline-block;padding:6px 12px;border-radius:10px;background:#eef6ff;color:#0b5aa6;text-decoration:none;font-size:14px;font-weight:600}
+.empty{color:var(--muted)}
+
+footer{text-align:center;color:var(--muted);font-size:14px;padding:0 14px 40px}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .art{min-height:200px}
+  .card{padding:22px}
+  summary{padding:16px}
+  .wrap{padding:0 12px 14px}
+  table,thead,tbody,tr,td{display:block}
+  thead{display:none}
+  tr{border:2px solid var(--line);border-radius:14px;padding:6px 12px;margin-bottom:10px}
+  td{border:0;padding:8px 0}
+  td::before{content:attr(data-l);display:block;font-family:var(--serif);font-weight:700;font-size:13px;color:var(--muted)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <span class="pill" id="schoolName"></span>
+    <span class="pill" id="teacherPill"></span>
+  </div>
+  <div class="hero">
+    <section class="card">
+      <h1 id="studentName"></h1>
+      <p id="about"></p>
+      <ul class="facts" id="facts"></ul>
+      <div class="btns">
+        <a class="btn" id="linkConf" target="_blank" rel="noopener">Войти на занятие</a>
+        <a class="btn alt" id="linkMiro" target="_blank" rel="noopener">Доска Miro</a>
+      </div>
+    </section>
+    <section class="card art" aria-hidden="true">
+      <i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i>
+      <svg class="squig" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 50 C30 0 50 80 80 40 S130 10 150 45 S210 80 240 35 S300 5 330 45 S380 70 400 30" fill="none" stroke="#FF6150" stroke-width="6" stroke-linecap="round"/></svg>
+    </section>
+  </div>
+</header>
+
+<main>
+  <div class="head">
+    <h2>Что проходим</h2>
+    <p>Нажмите на месяц, чтобы увидеть все занятия</p>
+  </div>
+  <div id="months"></div>
+</main>
+<footer id="foot"></footer>
+
+<script>
+/* ============================================================
+   ВСЁ, ЧТО НУЖНО МЕНЯТЬ, НАХОДИТСЯ В ЭТОМ БЛОКЕ
+   ============================================================ */
+const SITE = {
+  school: "Название школы или ваше имя",
+  teacher: "Преподаватель: Имя Отчество",
+  student: "Имя Фамилия ученика",
+  about: "Коротко об ученике: возраст, цель занятий, особенности.",
+  facts: [                       // можно добавлять и удалять строки
+    ["Возраст", "8 лет"],
+    ["Предмет", "Математика"],
+    ["Расписание", "вт и чт, 17:00"]
+  ],
+  conferenceUrl: "https://example.com/conference",   // ссылка на конференцию
+  miroUrl: "https://miro.com/app/board/ВАША_ДОСКА/"  // ссылка на доску Miro
+};
+
+/* Занятия. Месяцы создаются сами по дате: появилась дата декабря —
+   декабрь сам встанет над ноябрем.
+   date: "ГГГГ-ММ-ДД"; paid: true (оплачено) или false (не оплачено).
+   Файлы и фото к домашнему заданию: положите их в папку files рядом с
+   index.html и впишите имя файла в files: ["фото1.jpg", "задание.pdf"] */
+const LESSONS = [
+  { date:"2026-11-03", topic:"Сложение и вычитание до 20",
+    homework:{ text:"Карточки 1–5, стр. 12", files:[] }, paid:true },
+  { date:"2026-11-05", topic:"Состав числа",
+    homework:{ text:"Решить пример на фото", files:["primer.jpg"] }, paid:true },
+  { date:"2026-11-10", topic:"Задачи на «больше» и «меньше»",
+    homework:{ text:"", files:[] }, paid:false }
+];
+/* ============================================================ */
+
+const MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+const COLORS = ["#FF6150","#FBBF3B","#2E9C8F","#1384E0"];
+const IMG = /\.(jpe?g|png|gif|webp|heic)$/i;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = d => { const [y,m,day] = d.split("-"); return `${day}.${m}.${y}`; };
+
+document.title = SITE.student + " — занятия";
+document.getElementById("schoolName").textContent = SITE.school;
+document.getElementById("teacherPill").textContent = SITE.teacher;
+document.getElementById("studentName").textContent = SITE.student;
+document.getElementById("about").textContent = SITE.about;
+document.getElementById("facts").innerHTML = SITE.facts.map(([k,v]) => `<li><b>${esc(k)}</b>${esc(v)}</li>`).join("");
+document.getElementById("linkConf").href = SITE.conferenceUrl;
+document.getElementById("linkMiro").href = SITE.miroUrl;
+
+function filesHtml(files){
+  if(!files || !files.length) return "";
+  return `<div class="files">` + files.map(f => {
+    const u = "files/" + encodeURIComponent(f);
+    return IMG.test(f)
+      ? `<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${esc(f)}" loading="lazy"></a>`
+      : `<a class="file" href="${u}" target="_blank" rel="noopener">${esc(f)}</a>`;
+  }).join("") + `</div>`;
+}
+
+// группировка по месяцам: новые месяцы сверху, занятия внутри месяца по порядку
+const groups = {};
+LESSONS.forEach(l => (groups[l.date.slice(0,7)] ||= []).push(l));
+const keys = Object.keys(groups).sort().reverse();
+
+const box = document.getElementById("months");
+if(!keys.length){
+  box.innerHTML = `<p class="empty" style="text-align:center">Занятий пока нет.</p>`;
+}
+keys.forEach((k, i) => {
+  const [y, m] = k.split("-");
+  const rows = groups[k].sort((a,b) => a.date.localeCompare(b.date)).map(l => {
+    const hw = l.homework || {};
+    const hwText = hw.text ? esc(hw.text) : (hw.files && hw.files.length ? "" : `<span class="empty">—</span>`);
+    return `<tr>
+      <td class="date" data-l="Дата">${fmt(l.date)}</td>
+      <td data-l="Тема">${esc(l.topic)}</td>
+      <td data-l="Домашнее задание">${hwText}${filesHtml(hw.files)}</td>
+      <td data-l="Оплата"><span class="badge ${l.paid?"yes":"no"}">${l.paid?"Оплачено":"Не оплачено"}</span></td>
+    </tr>`;
+  }).join("");
+  const n = groups[k].length;
+  const word = n%10===1&&n%100!==11 ? "занятие" : (n%10>=2&&n%10<=4&&(n%100<10||n%100>=20) ? "занятия" : "занятий");
+  const d = document.createElement("details");
+  d.className = "month";
+  if(i === 0) d.open = true;   // самый новый месяц открыт сразу
+  d.innerHTML = `<summary>
+      <span class="dot" style="background:${COLORS[(keys.length-1-i)%COLORS.length]}"></span>
+      <h3>${MONTHS[+m-1]} ${y}</h3>
+      <span class="count">${n} ${word}</span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="wrap"><table>
+      <thead><tr><th>Дата</th><th>Тема</th><th>Домашнее задание</th><th>Оплата</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+  box.appendChild(d);
+});
+
+document.getElementById("foot").textContent = SITE.school;
+</script>
+</body>
+</html>
